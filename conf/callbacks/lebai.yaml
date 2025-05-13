@@ -14,10 +14,10 @@ ema:
 
 checkpoint:
   _target_: pytorch_lightning.callbacks.ModelCheckpoint
-  save_top_k: 1
+  save_top_k: -1
   verbose: True
-  monitor: eval_lh/avg_seq_len
-  mode: max
+  monitor: train/total_loss
+  mode: min
   dirpath: saved_models
-  filename: '{epoch:02d}_{eval_lh/avg_seq_len:.2f}'
-  every_n_epochs: ${callbacks.rollout_lh.rollout_freq}
+  filename: '{epoch:02d}_{train/total_loss:.04f}'
+  every_n_epochs: 5
