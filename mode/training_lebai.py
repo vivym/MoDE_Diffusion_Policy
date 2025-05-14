@@ -161,7 +161,7 @@ def rgb_mapper(
     *,
     statistic: Statistic | None = None,
     image_size: int = 224,
-    random_crop: bool = False,
+    random_crop: bool = True,
     mean: tuple[float, float, float] = (0.48145466, 0.4578275, 0.40821073),
     std: tuple[float, float, float] = (0.26862954, 0.26130258, 0.27577711),
     training: bool = True,

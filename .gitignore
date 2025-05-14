@@ -4,6 +4,9 @@
 /calvin_env_
 /MoDE_Pretrained
 
+*.pt
+*.ckpt
+
 .vscode
 dataset
 
