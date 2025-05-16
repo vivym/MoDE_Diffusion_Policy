@@ -108,6 +108,9 @@ def action_mapper(
 
     action = (action - mean) / std
 
+    action = action[::6].copy()
+    assert action.shape[0] == 32
+
     return torch.from_numpy(action).float()
 
 
@@ -249,7 +252,7 @@ class LebaiDataModule(pl.LightningDataModule):
         ds1 = LebaiH5Dataset(
             str(current_dir / "data/pick_and_place_banana_v0.2.h5"),
             obs_seq_len=1,
-            action_seq_len=32,
+            action_seq_len=32 * 6,
             mappers=mappers,
             training=True,
             repeat=2 * repeat_factor,
@@ -258,7 +261,7 @@ class LebaiDataModule(pl.LightningDataModule):
         ds2 = LebaiH5Dataset(
             str(current_dir / "data/pick_and_place_apple_v0.2.h5"),
             obs_seq_len=1,
-            action_seq_len=32,
+            action_seq_len=32 * 6,
             mappers=mappers,
             training=True,
             repeat=2 * repeat_factor,
@@ -267,7 +270,7 @@ class LebaiDataModule(pl.LightningDataModule):
         ds3 = LebaiH5Dataset(
             str(current_dir / "data/pick_and_place_lemon_v0.2.h5"),
             obs_seq_len=1,
-            action_seq_len=32,
+            action_seq_len=32 * 6,
             mappers=mappers,
             training=True,
             repeat=4 * repeat_factor,
@@ -276,7 +279,7 @@ class LebaiDataModule(pl.LightningDataModule):
         ds4 = LebaiH5Dataset(
             str(current_dir / "data/pick_and_pour_v0.1.h5"),
             obs_seq_len=1,
-            action_seq_len=32,
+            action_seq_len=32 * 6,
             mappers=mappers,
             training=True,
             repeat=1 * repeat_factor,
